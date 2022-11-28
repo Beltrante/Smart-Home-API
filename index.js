@@ -2,11 +2,6 @@ const express = require('express');
 const app = express();
 const PORT = 8080;
 
-app.listen(
-    PORT,
-    () => console.log(`It is alive on http://localhost:${PORT}`)
-);
-
 // I use the express.json middleware to convert the body in json
 app.use(express.json())
 
@@ -29,3 +24,8 @@ app.post('/tshirt/:id', (req, res) => {
         tshirt: `TSHIRT with your ${logo} and ID of ${id}`
     });
 });
+
+app.listen(
+    PORT,
+    () => console.log(`It is alive on http://localhost:${PORT}`)
+);
