@@ -5,6 +5,13 @@ const PORT = 8080;
 // I use the express.json middleware to convert the body in json
 app.use(express.json())
 
+app.get('/', (req, res) => {
+    res
+        .status(200)
+        .send('Smart Home API Server is running')
+        .end();
+});
+
 app.get('/tshirt', (req, res) => {
     res.status(200).send({
         tshirt: 'TSHIRT',
