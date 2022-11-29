@@ -11,7 +11,7 @@ The API returns a random increment or decrement of the capacity of the batteries
 ```shell
 https://smart-home-api-mockup.herokuapp.com/batteries
 ```
-### Get the overall capacity of the batteries
+### Reset the overall capacity of the batteries
 The API sets to zero the capacity of the batteries
 ```shell
 https://smart-home-api-mockup.herokuapp.com/reset_all
