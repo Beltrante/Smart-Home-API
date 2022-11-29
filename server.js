@@ -2,6 +2,19 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+let batteriesCapacity = 0;
+const increment = 10;
+const decrement = 1;
+
+app.listen(PORT, () => {
+    console.log(`Alive on http://localhost:${PORT}`);
+    console.log('Press Ctrl+C to quit.');
+});
+
+/**
+ * API calls
+ */
+
 app.get('/', (req, res) => {
     res
         .status(200)
@@ -9,28 +22,49 @@ app.get('/', (req, res) => {
         .end();
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-    console.log('Press Ctrl+C to quit.');
+app.get('/batteries', (req, res) => {
+
+    randomChangeBatteriesStatus();
+
+    res
+        .status(200)
+        .send({
+            capacity: batteriesCapacity,
+            unitOfMeasure: 'kWh'
+        })
 });
 
-app.get('/tshirt', (req, res) => {
-    res.status(200).send({
-        tshirt: 'TSHIRT',
-        size: 'large'
-    })
+app.get('/reset_all', (req, res) => {
+
+    batteriesCapacity = 0;
+
+    res
+        .status(200)
+        .send('Batteries capacity equal to zero')
+        .end();
 });
 
-app.post('/tshirt/:id', (req, res) => {
-    const { id } = req.params;
-    const { logo } = req.body;
 
-    if (!logo) {
-        res.status(418).send({ message: 'We need a logo! '});
+/**
+ * Utilities
+ */
+
+function randomChangeBatteriesStatus() {
+
+    let randomChoice = Math.random() < 0.5;
+
+    if (randomChoice) {
+        incrementBatteriesCapacity()
+    } else {
+        decrementBatteriesCapacity()
     }
+}
 
-    res.send({
-        tshirt: `TSHIRT with your ${logo} and ID of ${id}`
-    });
-});
+function incrementBatteriesCapacity() {
+    batteriesCapacity = batteriesCapacity + increment;
+}
+
+function decrementBatteriesCapacity() {
+    batteriesCapacity = batteriesCapacity - decrement < 0 ? 0
+        : batteriesCapacity - decrement;
+}
