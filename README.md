@@ -2,7 +2,7 @@
  
 [![License: MIT][license-image]][license]
 
-[https://smart-home-api-mockup.herokuapp.com/](https://smart-home-api-mockup.herokuapp.com/)
+[https://smart-home-api-mockup.herokuapp.com](https://smart-home-api-mockup.herokuapp.com)
 
 ## API calls
 
