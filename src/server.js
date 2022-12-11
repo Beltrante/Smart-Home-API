@@ -32,6 +32,7 @@ app.get('/batteries', (req, res) => {
             capacity: batteriesCapacity,
             unitOfMeasure: 'kWh'
         })
+        .end();
 });
 
 app.get('/reset_all', (req, res) => {
@@ -40,7 +41,9 @@ app.get('/reset_all', (req, res) => {
 
     res
         .status(200)
-        .send('Batteries capacity equal to zero')
+        .send({
+            message: 'Batteries capacity equal to zero'
+        })
         .end();
 });
 
