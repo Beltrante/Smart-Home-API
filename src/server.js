@@ -35,6 +35,20 @@ app.get('/batteries', (req, res) => {
         .end();
 });
 
+app.get('/:appliance', (req, res) => {
+
+    randomChangeBatteriesStatus();
+
+    res
+        .status(200)
+        .send({
+            capacity: batteriesCapacity,
+            unitOfMeasure: 'kWh'
+        })
+        .end();
+});
+
+
 app.get('/reset_all', (req, res) => {
 
     batteriesCapacity = 0;
