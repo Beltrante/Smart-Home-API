@@ -3,8 +3,19 @@ import home from '../model/home.js';
 
 const router = new express.Router();
 
-
 router.get('/batteries', (req, res) => {
+
+    res
+        .status(200)
+        .send({
+            capacity: home.battery.capacity,
+            unitOfMeasure: 'kWh'
+        })
+        .end();
+});
+
+
+router.get('/batteries/random', (req, res) => {
 
     home.battery.randomStatus()
 
@@ -17,7 +28,7 @@ router.get('/batteries', (req, res) => {
         .end();
 });
 
-router.get('/reset_all', (req, res) => {
+router.get('/batteries/reset', (req, res) => {
 
     home.battery.capacity = 0;
 
