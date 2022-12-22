@@ -1,19 +1,17 @@
 import express from 'express';
 import batteryRouter from './routers/batteryRouter.js';
+import applianceRouter from './routers/applianceRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use('/', batteryRouter);
+app.use('/', applianceRouter);
 
 app.listen(PORT, () => {
     console.log(`Alive on http://localhost:${PORT}`);
     console.log('Press Ctrl+C to quit.');
 });
-
-/**
- * API calls
- */
 
 app.get('/', (req, res) => {
     res
