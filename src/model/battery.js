@@ -11,7 +11,7 @@ export class Battery{
     incrementCapacity() {
         this.capacity = this.capacity + this.increment;
     }
-    
+
     decrementCapacity() {
         this.capacity = this.capacity - this.decrement < 0 ? 0
             : this.capacity - this.decrement;
@@ -20,11 +20,11 @@ export class Battery{
     randomStatus() {
 
         let randomChoice = Math.random() < 0.5;
-    
+
         if (randomChoice) {
-            this.incrementCapacity
+            this.incrementCapacity()
         } else {
-            this.decrementCapacity
+            this.decrementCapacity()
         }
     }
 

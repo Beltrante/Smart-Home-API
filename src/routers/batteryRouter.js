@@ -1,12 +1,12 @@
 import express from 'express';
-import{Battery} from '../model/battery.js';
+import {Battery} from '../model/battery.js';
 
-const battery = new Battery(10,10,1);
+const battery = new Battery(10, 10, 1);
 const router = new express.Router();
 
 router.get('/batteries', (req, res) => {
 
-    battery.randomStatus
+    battery.randomStatus()
 
     res
         .status(200)

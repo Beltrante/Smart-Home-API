@@ -4,7 +4,7 @@ import batteryRouter from './routers/batteryRouter.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(batteryRouter);
+app.use('/', batteryRouter);
 
 app.listen(PORT, () => {
     console.log(`Alive on http://localhost:${PORT}`);
