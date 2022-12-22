@@ -24,7 +24,7 @@ router.get('/appliances', (req, res) => {
         .end();
 });
 
-router.get('/appliances/:name', (req, res) => {
+router.get('/appliances/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
@@ -47,7 +47,7 @@ router.get('/appliances/:name', (req, res) => {
     }
 });
 
-router.get('/appliances/turnOn/:name', (req, res) => {
+router.get('/appliances/turnOn/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
@@ -67,7 +67,7 @@ router.get('/appliances/turnOn/:name', (req, res) => {
     }
 });
 
-router.get('/appliances/turnOff/:name', (req, res) => {
+router.get('/appliances/turnOff/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
@@ -82,6 +82,28 @@ router.get('/appliances/turnOff/:name', (req, res) => {
         .status(200)
         .send({
             message: "Appliance " + name + " is turned off"
+        })
+        .end();
+    }
+});
+
+router.get('/appliances/mostConsuming', (req, res) => {
+    const appliance = home.getMostConsumingAppliance()
+    if(appliance == null){
+        res.status(404)
+        .send({
+            message: 'No appliance is consuming right now'
+        })
+    }
+    else{
+        res
+        .status(200)
+        .send({
+            name: appliance.name,
+            isOn: appliance.isOn,
+            consume: appliance.consume,
+            realTimeConsume: appliance.realTimeConsume(),
+            unitOfMeasure: 'kWh'
         })
         .end();
     }
