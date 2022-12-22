@@ -3,35 +3,88 @@ import home from '../model/home.js';
 
 const router = new express.Router();
 
+router.get('/appliances', (req, res) => {
+    var jsonArr = [];
+
+    for (var i = 0; i < home.appliances.length; i++) {
+        jsonArr.push({
+            name: home.appliances[i].name,
+            isOn: home.appliances[i].isOn,
+            consume: home.appliances[i].consume,
+            realTimeConsume: home.appliances[i].realTimeConsume(),
+            unitOfMeasure: 'kWh'
+        });
+    }
+
+    res
+        .status(200)
+        .send({
+            appliances: jsonArr,
+        })
+        .end();
+});
+
 router.get('/appliances/:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
         res.status(404)
         .send({
-            message: 'No appliance with name = ' + name
+            message: 'No appliance with name ' + name
         })
     }
     else{
         res
         .status(200)
         .send({
-            name: home.appliances[0].name,
+            name: appliance.name,
+            isOn: appliance.isOn,
+            consume: appliance.consume,
+            realTimeConsume: appliance.realTimeConsume(),
             unitOfMeasure: 'kWh'
         })
         .end();
     }
 });
 
-router.get('/appliances', (req, res) => {
-
-    res
+router.get('/appliances/turnOn/:name', (req, res) => {
+    const name = req.params.name;
+    const appliance = home.getAppliance(name)
+    if(appliance == null){
+        res.status(404)
+        .send({
+            message: 'No appliance with name ' + name
+        })
+    }
+    else{
+        appliance.turnOn();
+        res
         .status(200)
         .send({
-            name: home.appliances[0].name,
-            unitOfMeasure: 'kWh'
+            message: "Appliance " + name + " is turned on"
         })
         .end();
+    }
+});
+
+router.get('/appliances/turnOff/:name', (req, res) => {
+    const name = req.params.name;
+    const appliance = home.getAppliance(name)
+    if(appliance == null){
+        res.status(404)
+        .send({
+            message: 'No appliance with name ' + name
+        })
+    }
+    else{
+        appliance.turnOff();
+        res
+        .status(200)
+        .send({
+            message: "Appliance " + name + " is turned off"
+        })
+        .end();
+    }
 });
 
 export default router;

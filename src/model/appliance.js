@@ -1,28 +1,24 @@
 export class Appliance{
 
-    constructor(name){
+    constructor(name,consume){
         this.isOn = false
         this.name = name;
+        this.consume = consume;
     }
 
-
-
-}
-
-
-export class DishWasher extends Appliance{
-    constructor(name){
-        super();
-        this.name = name
+    turnOn(){
+        this.isOn = true;
     }
 
-}
-
-export class WashingMachine extends Appliance{
-    constructor(name){
-        super();
-        this.name = name
+    turnOff(){
+        this.turnOn = false;
     }
+
+    realTimeConsume(){
+        if(this.isOn) return this.consume;
+        else return 0;
+    }
+
 
 }
 

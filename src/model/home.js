@@ -1,13 +1,12 @@
 import {Battery} from '../model/battery.js';
-import { DishWasher } from '../model/appliance.js';
-import { WashingMachine } from '../model/appliance.js';
+import { Appliance } from '../model/appliance.js';
 
 class Home {
     constructor(){
         this.battery = new Battery(10,10,1)
         this.appliances = [
-            new DishWasher("dishwasher"), 
-            new WashingMachine("washingmachine")]
+            new Appliance("dishwasher", 1.2), 
+            new Appliance("washingmachine", 5.6)]
     }
 
     // Return the appliance with the rispective name passed as parameter.

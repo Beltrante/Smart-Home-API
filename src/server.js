@@ -19,16 +19,3 @@ app.get('/', (req, res) => {
         .send('Smart Home API Server is running')
         .end();
 });
-
-// app.get('/:appliance', (req, res) => {
-
-//     randomChangeBatteriesStatus();
-
-//     res
-//         .status(200)
-//         .send({
-//             capacity: batteriesCapacity,
-//             unitOfMeasure: 'kWh'
-//         })
-//         .end();
-// });
