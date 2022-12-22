@@ -1,7 +1,9 @@
 import {Battery} from '../model/battery.js';
 import { Appliance } from '../model/appliance.js';
+import { Meteo } from '../model/meteo.js';
 
 class Home {
+    
     constructor(){
         this.battery = new Battery(10,10,1)
         this.appliances = [
@@ -10,6 +12,7 @@ class Home {
             new Appliance("washingmachine2",5.4),
             new Appliance("vacuumcleaner", 0.8),
         ]
+        this.meteo = new Meteo()
     }
 
     // Return the most consuming appliance in real time.
