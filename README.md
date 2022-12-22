@@ -2,20 +2,17 @@
  
 [![License: MIT][license-image]][license]
 
-[https://smart-home-api-mockup.herokuapp.com](https://smart-home-api-mockup.herokuapp.com)
+[https://smart-home-api-2j4i.onrender.com/](https://smart-home-api-2j4i.onrender.com/)
 
 ## API calls
 
 ### Get the overall capacity of the batteries
 The API returns a random increment or decrement of the capacity of the batteries
 ```shell
-https://smart-home-api-mockup.herokuapp.com/batteries
+https://smart-home-api-2j4i.onrender.com/batteries
 ```
 ### Reset the overall capacity of the batteries
 The API sets to zero the capacity of the batteries
 ```shell
-https://smart-home-api-mockup.herokuapp.com/reset_all
+https://smart-home-api-2j4i.onrender.com/reset_all
 ```
-
-[license]: https://github.com/MarcoBendinelli/Smart-Home-API/blob/main/LICENSE
-[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
