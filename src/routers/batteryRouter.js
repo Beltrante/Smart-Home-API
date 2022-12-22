@@ -1,17 +1,17 @@
 import express from 'express';
-import {Battery} from '../model/battery.js';
+import home from '../model/home.js';
 
-const battery = new Battery(10, 10, 1);
 const router = new express.Router();
+
 
 router.get('/batteries', (req, res) => {
 
-    battery.randomStatus()
+    home.battery.randomStatus()
 
     res
         .status(200)
         .send({
-            capacity: battery.capacity,
+            capacity: home.battery.capacity,
             unitOfMeasure: 'kWh'
         })
         .end();
@@ -19,7 +19,7 @@ router.get('/batteries', (req, res) => {
 
 router.get('/reset_all', (req, res) => {
 
-    battery.capacity = 0;
+    home.battery.capacity = 0;
 
     res
         .status(200)
