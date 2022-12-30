@@ -4,9 +4,12 @@ import batteryRouter from './routers/batteryRouter.js';
 import applianceRouter from './routers/applianceRouter.js';
 import photovoltaicPanelsRouter from './routers/photovoltaicPanelsRouter.js';
 import meteoRouter from './routers/meteoRouter.js';
+import expressWs from 'express-ws';
 
-const app = express();
-const PORT = process.env.PORT || 8080;
+// const app = express();
+const app = expressWs(express()).app;
+
+const PORT = process.env.PORT || 80;
 
 app.use('/', homeRouter);
 app.use('/', batteryRouter);
@@ -24,4 +27,18 @@ app.get('/', (req, res) => {
         .status(200)
         .send('Smart Home API Server is running')
         .end();
+});
+
+app.ws('/echo', function(ws, req) {
+    ws.on('message', function(msg) {
+        ws.send(msg);
+        console.log(msg)
+    });
+
+    //setInterval(myFunction, 4000)
+
+    function myFunction() {
+        ws.send("PROVA");
+        console.log("PROVA")
+    }
 });
