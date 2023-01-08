@@ -28,7 +28,7 @@ router.get('/appliances/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
-        res.status(404)
+        res.status(200)
         .send({
             message: 'No appliance with name ' + name
         })
@@ -51,7 +51,7 @@ router.get('/appliances/turnOn/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
-        res.status(404)
+        res.status(200)
         .send({
             message: 'No appliance with name ' + name
         })
@@ -71,7 +71,7 @@ router.get('/appliances/turnOff/name=:name', (req, res) => {
     const name = req.params.name;
     const appliance = home.getAppliance(name)
     if(appliance == null){
-        res.status(404)
+        res.status(200)
         .send({
             message: 'No appliance with name ' + name
         })
@@ -90,7 +90,7 @@ router.get('/appliances/turnOff/name=:name', (req, res) => {
 router.get('/appliances/mostConsuming', (req, res) => {
     const appliance = home.getMostConsumingAppliance()
     if(appliance == null){
-        res.status(404)
+        res.status(200)
         .send({
             message: 'No appliance is consuming right now'
         })
