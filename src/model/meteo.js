@@ -1,5 +1,5 @@
 
-const MeteoState = {
+export const MeteoState = {
     sunny: "Sunny",
     cloudy: "Cloudy",
     rainy: "Rainy",

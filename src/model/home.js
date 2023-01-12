@@ -1,18 +1,20 @@
 import {Battery} from '../model/battery.js';
 import { Appliance } from '../model/appliance.js';
 import { Meteo } from '../model/meteo.js';
+import { PhotovoltaicPanels } from '../model/photovoltaicPanels.js';
 
 class Home {
     
     constructor(){
-        this.battery = new Battery(10,10,1)
+        this.battery = new Battery(1,10,0.01,0.01)
+        this.meteo = new Meteo()
         this.appliances = [
             new Appliance("dishwasher", 1.2), 
             new Appliance("washingmachine", 5.6),
-            new Appliance("washingmachine2",5.4),
             new Appliance("vacuumcleaner", 0.8),
+            new Appliance("television", 0.12),
         ]
-        this.meteo = new Meteo()
+        this.photovoltaicPanels = new PhotovoltaicPanels(18,0.25)
     }
 
     // Return the most consuming appliance in real time.
