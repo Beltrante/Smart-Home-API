@@ -6,7 +6,7 @@ import { PhotovoltaicPanels } from '../model/photovoltaicPanels.js';
 class Home {
     
     constructor(){
-        this.battery = new Battery(1,10,0.01,0.01)
+        this.battery = new Battery(0,10,0.01,0.01)
         this.meteo = new Meteo()
         this.appliances = [
             new Appliance("dishwasher", 1.2), 

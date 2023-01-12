@@ -7,7 +7,10 @@ router.get('/home', (req, res) => {
     res
         .status(200)
         .send({
-            status: "OK",
+            meteo : home.meteo.state,
+            battery : home.battery.capacity,
+            panel: home.photovoltaicPanels.currentOutput,
+            applicances : home.appliances
         })
         .end();
 });
