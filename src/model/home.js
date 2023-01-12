@@ -6,15 +6,74 @@ import { PhotovoltaicPanels } from '../model/photovoltaicPanels.js';
 class Home {
     
     constructor(){
-        this.battery = new Battery(0,10,0.01,0.01)
+        // Counters
+        this.greenEnergyConsumed = 0
+        this.notGreenEnergyConsumed = 0
+
+        // Behaviour grades (current = 1h simulation)
+        this.totalGrade = 0
+        this.currentGrade = 0
+
+        // External Phenomena
         this.meteo = new Meteo()
+
+        // House Structure
+        this.battery = new Battery(0,10)
         this.appliances = [
             new Appliance("dishwasher", 1.2), 
             new Appliance("washingmachine", 5.6),
             new Appliance("vacuumcleaner", 0.8),
             new Appliance("television", 0.12),
         ]
-        this.photovoltaicPanels = new PhotovoltaicPanels(18,0.25)
+        this.photovoltaicPanels = new PhotovoltaicPanels(18,0.35)
+    }
+
+    /// Simulate one hour 
+    simulate(){
+
+        let energy = this.photovoltaicPanels.currentOutput
+        let greenEnergy = 0
+        let notGreenEnergy = 0
+        let energyConsumed = this.getCurrentAppliancesConsume()
+
+        energy = energy - energyConsumed
+
+        if(energy < 0){
+            let delta = this.battery.decrementCapacity(Math.abs(energy))
+            if(delta != 0){
+                greenEnergy = energyConsumed - delta
+                notGreenEnergy = energyConsumed + delta
+            }
+            else {
+                greenEnergy = energyConsumed
+                notGreenEnergy = 0
+            }
+        }
+        else{
+            this.battery.incrementCapacity(energy)
+            greenEnergy = energyConsumed
+            notGreenEnergy = 0
+        }
+        this.greenEnergyConsumed = this.greenEnergyConsumed + greenEnergy
+        this.notGreenEnergyConsumed = this.notGreenEnergyConsumed + notGreenEnergy
+    
+        this.currentGrade = this.rateBehaviour(greenEnergy,notGreenEnergy)
+        this.totalGrade = this.rateBehaviour(this.greenEnergyConsumed,this.notGreenEnergyConsumed)
+        this.meteo.change()
+        this.photovoltaicPanels.computeEnergyOutput(this.meteo)
+    }
+
+    rateBehaviour(greenEnergy, notGreenEnergy){
+        if(greenEnergy + notGreenEnergy == 0 ) return 1
+        return (greenEnergy/(greenEnergy + notGreenEnergy)) * 100                
+    }
+
+    getCurrentAppliancesConsume(){
+        let applicanesEnergy = 0
+        for(let i = 0; i < this.appliances.length; i++){
+            applicanesEnergy = applicanesEnergy + this.appliances[i].realTimeConsume()
+        }
+        return applicanesEnergy;        
     }
 
     // Return the most consuming appliance in real time.

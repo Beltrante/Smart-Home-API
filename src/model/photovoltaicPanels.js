@@ -10,6 +10,7 @@ export class PhotovoltaicPanels{
     // Compute the energy in kwh given the meteo as input
     computeEnergyOutput(meteo){
         let coverage
+        console.log(meteo.state)
         if(meteo.state == MeteoState.sunny){
             coverage = 1
         }
@@ -21,6 +22,8 @@ export class PhotovoltaicPanels{
         }
 
         this.currentOutput = coverage * this.maxEnergyProduced
+        console.log(this.maxEnergyProduced)
+        console.log(this.currentOutput)
     }
 
 }

@@ -9,6 +9,27 @@ router.get('/home', (req, res) => {
         .send({
             meteo : home.meteo.state,
             battery : home.battery.capacity,
+            greenEnergyTotal: home.greenEnergyConsumed,
+            notGreenEnergyTotal: home.notGreenEnergyConsumed,
+            totalGrade: home.totalGrade,
+            currentGrade: home.currentGrade,
+            panel: home.photovoltaicPanels.currentOutput,
+            applicances : home.appliances
+        })
+        .end();
+});
+
+router.get('/home/simulate', (req, res) => {
+    home.simulate()
+    res
+        .status(200)
+        .send({
+            meteo : home.meteo.state,
+            battery : home.battery.capacity,
+            greenEnergyTotal: home.greenEnergyConsumed,
+            notGreenEnergyTotal: home.notGreenEnergyConsumed,
+            totalGrade: home.totalGrade,
+            currentGrade: home.currentGrade,
             panel: home.photovoltaicPanels.currentOutput,
             applicances : home.appliances
         })
