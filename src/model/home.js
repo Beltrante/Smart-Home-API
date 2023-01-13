@@ -11,8 +11,8 @@ class Home {
         this.notGreenEnergyConsumed = 0
 
         // Behaviour grades (current = 1h simulation)
-        this.totalGrade = 0
-        this.currentGrade = 0
+        this.totalGrade = 100
+        this.currentGrade = 100
 
         // External Phenomena
         this.meteo = new Meteo()
@@ -20,14 +20,16 @@ class Home {
         // House Structure
         this.battery = new Battery(0,10)
         this.appliances = [
+            // TODO modify name with dialogflow intents
+            new Appliance("airconditioner",3),
+            new Appliance("dehumidifier", 0.07),
+            // Consume heating 10 L of water
+            new Appliance("cooker", 1.04),
             new Appliance("dishwasher", 1.2),
-            new Appliance("dish washer", 1.2),
-            new Appliance("washingmachine", 5.6),
-            new Appliance("washing machine", 5.6),
-            new Appliance("vacuumcleaner", 0.8),
-            new Appliance("vacuum cleaner", 0.8),
-            new Appliance("television", 0.12),
-            new Appliance("tv", 0.12),
+            new Appliance("dryer",3.5),
+            new Appliance("heatboiler",24),
+            new Appliance("Oven", 2.3),
+            new Appliance("washingmachine", 1.3),
         ]
         this.photovoltaicPanels = new PhotovoltaicPanels(18,0.35)
     }
@@ -68,7 +70,7 @@ class Home {
     }
 
     rateBehaviour(greenEnergy, notGreenEnergy){
-        if(greenEnergy + notGreenEnergy == 0 ) return 1
+        if(greenEnergy + notGreenEnergy == 0 ) return 100
         return (greenEnergy/(greenEnergy + notGreenEnergy)) * 100
     }
 
