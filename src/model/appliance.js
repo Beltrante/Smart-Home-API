@@ -11,7 +11,7 @@ export class Appliance{
     }
 
     turnOff(){
-        this.turnOn = false;
+        this.isOn = false;
     }
 
     realTimeConsume(){
