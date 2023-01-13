@@ -4,7 +4,7 @@ import { Meteo } from '../model/meteo.js';
 import { PhotovoltaicPanels } from '../model/photovoltaicPanels.js';
 
 class Home {
-    
+
     constructor(){
         // Counters
         this.greenEnergyConsumed = 0
@@ -20,15 +20,19 @@ class Home {
         // House Structure
         this.battery = new Battery(0,10)
         this.appliances = [
-            new Appliance("dishwasher", 1.2), 
+            new Appliance("dishwasher", 1.2),
+            new Appliance("dish washer", 1.2),
             new Appliance("washingmachine", 5.6),
+            new Appliance("washing machine", 5.6),
             new Appliance("vacuumcleaner", 0.8),
+            new Appliance("vacuum cleaner", 0.8),
             new Appliance("television", 0.12),
+            new Appliance("tv", 0.12),
         ]
         this.photovoltaicPanels = new PhotovoltaicPanels(18,0.35)
     }
 
-    /// Simulate one hour 
+    /// Simulate one hour
     simulate(){
 
         let energy = this.photovoltaicPanels.currentOutput
@@ -56,7 +60,7 @@ class Home {
         }
         this.greenEnergyConsumed = this.greenEnergyConsumed + greenEnergy
         this.notGreenEnergyConsumed = this.notGreenEnergyConsumed + notGreenEnergy
-    
+
         this.currentGrade = this.rateBehaviour(greenEnergy,notGreenEnergy)
         this.totalGrade = this.rateBehaviour(this.greenEnergyConsumed,this.notGreenEnergyConsumed)
         this.meteo.change()
@@ -65,7 +69,7 @@ class Home {
 
     rateBehaviour(greenEnergy, notGreenEnergy){
         if(greenEnergy + notGreenEnergy == 0 ) return 1
-        return (greenEnergy/(greenEnergy + notGreenEnergy)) * 100                
+        return (greenEnergy/(greenEnergy + notGreenEnergy)) * 100
     }
 
     getCurrentAppliancesConsume(){
@@ -73,7 +77,7 @@ class Home {
         for(let i = 0; i < this.appliances.length; i++){
             applicanesEnergy = applicanesEnergy + this.appliances[i].realTimeConsume()
         }
-        return applicanesEnergy;        
+        return applicanesEnergy;
     }
 
     // Return the most consuming appliance in real time.
@@ -83,7 +87,7 @@ class Home {
         let current = 0;
         let max = 0;
         for(let i = 0; i < this.appliances.length; i++){
-            current = this.appliances[i].realTimeConsume()    
+            current = this.appliances[i].realTimeConsume()
             if(current > max){
                 max = current
                 index = i
@@ -93,7 +97,7 @@ class Home {
         return this.appliances[index]
     }
 
-    
+
 
     // Return the appliance with the rispective name passed as parameter.
     // Return null if no appliace is found.
