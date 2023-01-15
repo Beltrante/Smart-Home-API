@@ -20,16 +20,19 @@ class Home {
         // House Structure
         this.battery = new Battery(0,10)
         this.appliances = [
-            // TODO modify name with dialogflow intents
-            new Appliance("airconditioner",3),
+            new Appliance("air conditioner",3),
             new Appliance("dehumidifier", 0.07),
             // Consume heating 10 L of water
             new Appliance("cooker", 1.04),
             new Appliance("dishwasher", 1.2),
             new Appliance("dryer",3.5),
             new Appliance("heatboiler",24),
-            new Appliance("Oven", 2.3),
-            new Appliance("washingmachine", 1.3),
+            new Appliance("oven", 2.3),
+            new Appliance("washing machine", 1.3),
+            // FIXME took from Dialogflow, I put a random consume
+            new Appliance("clothes dryer", 1.3),
+            new Appliance("refrigerator", 1.3),
+            new Appliance("coffee maker", 1.3),
         ]
         this.photovoltaicPanels = new PhotovoltaicPanels(18,0.35)
     }
