@@ -27,8 +27,8 @@ class Home {
             new Appliance("cooker", 1.04),
             new Appliance("dishwasher", 1.2),
             new Appliance("dryer",3.5),
-            new Appliance("heatboiler",24),
-            new Appliance("Oven", 2.3),
+            new Appliance("boiler",24),
+            new Appliance("oven", 2.3),
             new Appliance("washingmachine", 1.3),
         ]
         this.photovoltaicPanels = new PhotovoltaicPanels(18,0.35)
