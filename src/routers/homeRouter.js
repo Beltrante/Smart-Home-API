@@ -19,7 +19,7 @@ router.get('/home', (req, res) => {
         .end();
 });
 
-router.send('/home/simulate', (req, res) => {
+router.get('/home/simulate', (req, res) => {
     home.simulate()
     res
         .status(200)
