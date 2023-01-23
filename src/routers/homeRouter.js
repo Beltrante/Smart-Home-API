@@ -6,7 +6,7 @@ const router = new express.Router();
 router.get('/home', (req, res) => {
     res
         .status(200)
-        .json({
+        .send({
             meteo : home.meteo.state,
             battery : home.battery.capacity,
             greenEnergyTotal: home.greenEnergyConsumed,
@@ -19,7 +19,7 @@ router.get('/home', (req, res) => {
         .end();
 });
 
-router.get('/home/simulate', (req, res) => {
+router.send('/home/simulate', (req, res) => {
     home.simulate()
     res
         .status(200)

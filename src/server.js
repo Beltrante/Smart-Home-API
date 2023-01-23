@@ -5,11 +5,14 @@ import applianceRouter from './routers/applianceRouter.js';
 import photovoltaicPanelsRouter from './routers/photovoltaicPanelsRouter.js';
 import meteoRouter from './routers/meteoRouter.js';
 import expressWs from 'express-ws';
+import cors from 'cors';
 
 // const app = express();
 const app = expressWs(express()).app;
 
 const PORT = process.env.PORT || 80;
+
+app.use(cors());
 
 app.use('/', homeRouter);
 app.use('/', batteryRouter);
