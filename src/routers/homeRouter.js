@@ -23,7 +23,7 @@ router.get('/home/simulate', (req, res) => {
     home.simulate()
     res
         .status(200)
-        .json({
+        .send({
             meteo : home.meteo.state,
             battery : home.battery.capacity,
             greenEnergyTotal: home.greenEnergyConsumed,
