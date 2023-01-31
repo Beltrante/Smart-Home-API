@@ -35,16 +35,15 @@ app.get('/', (req, res) => {
 
 app.ws('/echo', function(ws, req) {
 
-    ws.on('message', function(msg) {
-        ws.send(msg);
-        console.log(msg)
-    });
+    // ws.on('message', function(msg) {
+    //     ws.send(msg);
+    //     console.log(msg)
+    // });
 
     setInterval(myFunction, 1000)
 
     function myFunction() {
         ws
-            .status(200)
             .send({
                 meteo : home.meteo.state,
                 battery : home.battery.capacity,
