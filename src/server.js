@@ -54,6 +54,5 @@ app.ws('/echo', function(ws, req) {
                 panel: home.photovoltaicPanels.currentOutput,
                 applicances : home.appliances
             })
-            .end();
     }
 });
