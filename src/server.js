@@ -43,16 +43,16 @@ app.ws('/echo', function(ws, req) {
     setInterval(myFunction, 1000)
 
     function myFunction() {
-        ws
-            .send({
-                meteo : home.meteo.state,
-                battery : home.battery.capacity,
-                greenEnergyTotal: home.greenEnergyConsumed,
-                notGreenEnergyTotal: home.notGreenEnergyConsumed,
-                totalGrade: home.totalGrade,
-                currentGrade: home.currentGrade,
-                panel: home.photovoltaicPanels.currentOutput,
-                applicances : home.appliances
-            })
+        // ws.send({
+        //         meteo : home.meteo.state,
+        //         battery : home.battery.capacity,
+        //         greenEnergyTotal: home.greenEnergyConsumed,
+        //         notGreenEnergyTotal: home.notGreenEnergyConsumed,
+        //         totalGrade: home.totalGrade,
+        //         currentGrade: home.currentGrade,
+        //         panel: home.photovoltaicPanels.currentOutput,
+        //         applicances : home.appliances
+        //     })
+        ws.send("TRY TRY TRY TRY TRY")
     }
 });
