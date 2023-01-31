@@ -6,6 +6,7 @@ import photovoltaicPanelsRouter from './routers/photovoltaicPanelsRouter.js';
 import meteoRouter from './routers/meteoRouter.js';
 import expressWs from 'express-ws';
 import cors from 'cors';
+import home from "./model/home.js";
 
 // const app = express();
 const app = expressWs(express()).app;
@@ -33,15 +34,27 @@ app.get('/', (req, res) => {
 });
 
 app.ws('/echo', function(ws, req) {
+
     ws.on('message', function(msg) {
         ws.send(msg);
         console.log(msg)
     });
 
-    //setInterval(myFunction, 4000)
+    setInterval(myFunction, 1000)
 
     function myFunction() {
-        ws.send("PROVA");
-        console.log("PROVA")
+        ws
+            .status(200)
+            .send({
+                meteo : home.meteo.state,
+                battery : home.battery.capacity,
+                greenEnergyTotal: home.greenEnergyConsumed,
+                notGreenEnergyTotal: home.notGreenEnergyConsumed,
+                totalGrade: home.totalGrade,
+                currentGrade: home.currentGrade,
+                panel: home.photovoltaicPanels.currentOutput,
+                applicances : home.appliances
+            })
+            .end();
     }
 });
