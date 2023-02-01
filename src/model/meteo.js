@@ -20,6 +20,10 @@ export class Meteo{
         }
     }
 
+    setWeather(meteoState){
+        this.state = meteoState;
+    }
+
     // Return a new meteo state 
     change(){
         console.log(this.state)
