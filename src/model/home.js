@@ -100,7 +100,7 @@ class Home {
         this.photovoltaicPanels.computeEnergyOutput(this.meteo)
     }
 
-    
+    //
 
     rateCurrentBehaviour(greenEnergy, notGreenEnergy){
         if(greenEnergy + notGreenEnergy == 0 ) return 100
