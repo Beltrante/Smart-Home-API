@@ -108,9 +108,9 @@ class Home {
     }
 
     rateTotalBehaviour(){
-        this.simulatedHours = this.simulatedHours + 1;
-        this.simulatedGradeSum = this.simulatedGradeSum + this.currentGrade;
-        return this.simulatedGradeSum/this.simulatedHours;
+        this.simulatedHours = this.simulatedHours + 1
+        this.simulatedGradeSum = this.simulatedGradeSum + this.currentGrade
+        return this.simulatedGradeSum/this.simulatedHours
     }
 
     getCurrentAppliancesConsume(){
