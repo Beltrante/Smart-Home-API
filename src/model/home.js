@@ -14,6 +14,9 @@ class Home {
         this.totalGrade = 100
         this.currentGrade = 100
 
+        this.simulatedHours = 0
+        this.simulatedGradeSum = 0
+
         // External Phenomena
         this.meteo = new Meteo()
 
@@ -91,15 +94,23 @@ class Home {
         this.greenEnergyConsumed = this.greenEnergyConsumed + greenEnergy
         this.notGreenEnergyConsumed = this.notGreenEnergyConsumed + notGreenEnergy
 
-        this.currentGrade = this.rateBehaviour(greenEnergy,notGreenEnergy)
-        this.totalGrade = this.rateBehaviour(this.greenEnergyConsumed,this.notGreenEnergyConsumed)
+        this.currentGrade = this.rateCurrentBehaviour(greenEnergy,notGreenEnergy)
+        this.totalGrade = this.rateTotalBehaviour()
         this.meteo.change()
         this.photovoltaicPanels.computeEnergyOutput(this.meteo)
     }
 
-    rateBehaviour(greenEnergy, notGreenEnergy){
+    
+
+    rateCurrentBehaviour(greenEnergy, notGreenEnergy){
         if(greenEnergy + notGreenEnergy == 0 ) return 100
         return (greenEnergy/(greenEnergy + notGreenEnergy)) * 100
+    }
+
+    rateTotalBehaviour(){
+        this.simulatedHours = this.simulatedHours + 1;
+        this.simulatedGradeSum = this.simulatedGradeSum + this.currentGrade;
+        return this.simulatedGradeSum/this.simulatedHours;
     }
 
     getCurrentAppliancesConsume(){
